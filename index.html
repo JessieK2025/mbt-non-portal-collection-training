@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeFlow - Non-Portal Carrier Document Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,153,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #000099 0%, #00B980 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+        
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            font-weight: 900;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: #000099;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #00B980;
+        }
+        
+        h3 {
+            color: #1A7848;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+        }
+        
+        h4 {
+            color: #53B684;
+            font-size: 1.1em;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #444;
+            line-height: 1.8;
+        }
+        
+        .overview-box {
+            background: linear-gradient(135deg, #A3A5F9 0%, #85DABA 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(0,0,153,0.1);
+        }
+        
+        .overview-box h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .info-card {
+            background: linear-gradient(135deg, #D89CE8 0%, #B263C8 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-card li {
+            color: white;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .info-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+        }
+        
+        .step-card {
+            background: white;
+            border-left: 5px solid #00B980;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: -5px;
+            top: 15px;
+            background: #00B980;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+        
+        .step-card h3 {
+            margin-left: 50px;
+            color: #000099;
+        }
+        
+        .step-content {
+            margin-left: 50px;
+            margin-top: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .checklist {
+            background: linear-gradient(135deg, #B263C8 0%, #8A288E 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .checklist h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .checklist li {
+            color: white;
+            list-style: none;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .template-box {
+            background: #f8f9fa;
+            border: 2px solid #7A7FF5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #85DABA 0%, #53B684 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .tip-box::before {
+            content: '💡';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #7A7FF5 0%, #A3A5F9 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .warning-box::before {
+            content: '⚠️';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+        }
+        
+        .footer {
+            background: #000099;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+        
+        .footer p {
+            color: white;
+            margin: 5px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #00B980;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            margin: 0 5px;
+        }
+        
+        .time-estimate {
+            background: linear-gradient(135deg, #1A7848 0%, #53B684 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+        
+        strong {
+            color: #000099;
+            font-weight: 700;
+        }
+        
+        .clickup-note {
+            background: linear-gradient(135deg, #53B684 0%, #1A7848 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .clickup-note strong {
+            color: white;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Non-Portal Carrier Document Collection</h1>
+            <div class="subtitle">Training Guide for ThreeFlow Managed Groups</div>
+        </div>
+        
+        <div class="content">
+            <div class="overview-box">
+                <h2>Overview & Purpose</h2>
+                <p>This guide provides comprehensive instructions for collecting policy documents from insurance carriers without online portals. Document collection is essential for maintaining accurate records, preparing renewals, and ensuring compliance. This process involves reaching out to carrier representatives via email to request policy documents for employer groups.</p>
+            </div>
+            
+            <h2>Before You Begin</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>Required Access</h4>
+                    <ul>
+                        <li>ClickUp (MbT - ALL view)</li>
+                        <li>Email platform</li>
+                        <li>Carrier contact database</li>
+                        <li>Policy information sheet</li>
+                        <li>Letter of Authorization (LOA)</li>
+                        <li>Broker-specific templates/macros</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Key Terms</h4>
+                    <ul>
+                        <li><strong>Lives:</strong> Number of employees covered</li>
+                        <li><strong>Carrier:</strong> Insurance company</li>
+                        <li><strong>LOA:</strong> Letter of Authorization</li>
+                        <li><strong>Employer Group:</strong> Company with coverage</li>
+                        <li><strong>Collection Status:</strong> Progress indicator</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <strong>Important:</strong> You'll typically only send 1-2 emails per carrier, grouping multiple employer groups together for efficiency.
+            </div>
+            
+            <h2>Step-by-Step Process</h2>
+            
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Identify Available Work in ClickUp</h3>
+                <div class="step-content">
+                    <ol>
+                        <li>Navigate to the <strong>"MbT - ALL"</strong> ClickUp view</li>
+                        <li>Look for products that meet BOTH criteria:
+                            <ul>
+                                <li>Collection Status = <span class="badge">Not Started</span></li>
+                                <li>Document Collection Owner = <span class="badge">Unassigned</span></li>
+                            </ul>
+                        </li>
+                        <li>Choose a carrier to work on</li>
+                        <li>Note the number of lives for each group</li>
+                    </ol>
+                    
+                    <div class="clickup-note">
+                        <strong>ClickUp Tip:</strong> You can use filters to quickly find all unassigned work. Filter by "Collection Status: Not Started" AND "Document Collection Owner: Unassigned" to see all available tasks.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Assign Yourself as Owner</h3>
+                <div class="step-content">
+                    <ol>
+                        <li>Select all products for your chosen carrier</li>
+                        <li>Assign yourself as <strong>"Document Collection Owner"</strong></li>
+                        <li>Keep this window open for reference</li>
+                        <li>Note all employer groups and products for this carrier</li>
+                    </ol>
+                    
+                    <div class="tip-box">
+                        <strong>Pro Tip:</strong> Work on one carrier at a time to maintain organization and ensure all related groups are handled together.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Prepare Your Email Request</h3>
+                <div class="step-content">
+                    <h4>Start New Communication</h4>
+                    <ol>
+                        <li>Open your email platform</li>
+                        <li>Start a new conversation</li>
+                        <li>Apply the appropriate macro/template based on your broker's guidelines</li>
+                    </ol>
+                    
+                    <div class="tip-box">
+                        <strong>Pro Tip:</strong> Reference your broker's specific macro or template guidelines for group size requirements and renewal information requests.
+                    </div>
+                    
+                    <h4>Create Subject Line</h4>
+                    <div class="template-box">
+                        Action Needed: Document Request for Policy Documents [Your Broker Name]
+                    </div>
+                    
+                    <h4>List Employer Groups</h4>
+                    <p>Format each employer group as:</p>
+                    <div class="template-box">
+                        • Employer Name (Policy Number) - Coverage Type(s)<br>
+                        • ABC Company (123456) - Dental, Vision, Life/AD&D<br>
+                        • XYZ Corporation (789105) - Short Term Disability
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Select Carrier Contacts</h3>
+                <div class="step-content">
+                    <ol>
+                        <li>Open carrier contact database</li>
+                        <li>Navigate to appropriate region/section</li>
+                        <li>Consider these factors:
+                            <ul>
+                                <li>Group size specifications</li>
+                                <li>Product-specific representatives</li>
+                                <li>Limit to 1-2 recipients for best response rate</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="warning-box">
+                        <strong>Best Practice:</strong> When multiple people are CC'd, often no one responds. Be strategic with recipient selection.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <h3>Finalize and Send</h3>
+                <div class="step-content">
+                    <div class="checklist">
+                        <h3>Pre-Send Checklist</h3>
+                        <ul>
+                            <li>Correct template/macro applied</li>
+                            <li>Subject line includes broker name</li>
+                            <li>All assigned groups listed</li>
+                            <li>Policy numbers included where available</li>
+                            <li>Only assigned products mentioned</li>
+                            <li>Letter of Authorization attached</li>
+                            <li>1-2 carrier contacts selected</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Send and Track</h4>
+                    <ol>
+                        <li>Send the email</li>
+                        <li>Set follow-up reminder for <span class="badge">1 WEEK</span></li>
+                        <li>Ensure auto-follow-up features are activated (3-day trigger)</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">6</div>
+                <h3>Update ClickUp Status</h3>
+                <div class="step-content">
+                    <ol>
+                        <li>Return to ClickUp "MbT - ALL" view</li>
+                        <li>Find all products for the carrier you just contacted</li>
+                        <li>Update Collection Status from "Not Started" to <span class="badge">PENDING</span></li>
+                        <li>Add relevant notes about outreach in comments if needed</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <h2>Email Template</h2>
+            
+            <div class="template-box">
+Subject: Action Needed: Document Request for Policy Documents [Your Broker Name]
+
+Dear [Carrier Contact Name],
+
+[Apply your broker's specific macro/template here]
+
+We are requesting policy documents for the following employer groups:
+
+• [Employer Name] ([Policy Number]) - [Coverage Types]
+• [Employer Name] ([Policy Number]) - [Coverage Types]
+
+Please provide:
+- Current policy documents
+- Summary of benefits
+- Rate sheets
+- Any amendments or riders
+[Additional items as specified in your broker's template]
+
+Letter of Authorization attached for reference.
+
+Please send at your earliest convenience.
+
+Best regards,
+[Your Name]
+[Your Title]
+[Contact Information]
+            </div>
+            
+            <h2>Time Expectations</h2>
+            
+            <div class="info-grid">
+                <div class="time-estimate">
+                    <strong>Per Carrier:</strong> 5-10 minutes
+                </div>
+                <div class="time-estimate">
+                    <strong>6-8 Carriers:</strong> ~1 hour
+                </div>
+                <div class="time-estimate">
+                    <strong>Follow-ups:</strong> 2-3 minutes each
+                </div>
+            </div>
+            
+            <h2>Troubleshooting Guide</h2>
+            
+            <h3>No Response Received</h3>
+            <ul>
+                <li><strong>After 3 days:</strong> First follow-up (may be automated)</li>
+                <li><strong>After 1 week:</strong> Manual follow-up with updated subject</li>
+                <li><strong>After 2 weeks:</strong> Escalate to supervisor or try alternative contact</li>
+            </ul>
+            
+            <h3>Common Scenarios</h3>
+            
+            <div class="info-card">
+                <h4>No Policy Number Available</h4>
+                <p>Proceed without it. Include as much identifying information as possible (group name, employee count, coverage types).</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Multiple Carriers per Employer</h4>
+                <p>Only request documents for YOUR assigned products. Coordinate with team members handling other products.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Unclear Contact Person</h4>
+                <p>Start with most relevant title. If no response, try alternative contacts in follow-up.</p>
+            </div>
+            
+            <h2>Quality Assurance</h2>
+            
+            <div class="checklist">
+                <h3>Completion Checklist</h3>
+                <ul>
+                    <li>All requested documents received</li>
+                    <li>Documents match assigned groups/products</li>
+                    <li>Policy numbers verified</li>
+                    <li>Documents are current (not expired)</li>
+                    <li>ClickUp status updated to "Complete"</li>
+                    <li>Documents properly filed/uploaded</li>
+                </ul>
+            </div>
+            
+            <div class="tip-box">
+                <strong>Remember:</strong> This process is critical for maintaining accurate records and ensuring smooth renewals. Your attention to detail and timely follow-up directly impacts service quality.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>ThreeFlow</strong></p>
+            <p>Non-Portal Carrier Document Collection Guide</p>
+            <p>© 2024 - Confidential Training Material</p>
+        </div>
+    </div>
+</body>
+</html>
