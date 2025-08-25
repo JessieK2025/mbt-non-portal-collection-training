@@ -359,11 +359,12 @@
                     <h4>Required Access</h4>
                     <ul>
                         <li>ClickUp (MbT - ALL view)</li>
-                        <li>Email platform</li>
+                        <li>Intercom</li>
+                        <li>Omni (for coverage lists)</li>
                         <li>Carrier contact database</li>
                         <li>Policy information sheet</li>
                         <li>Letter of Authorization (LOA)</li>
-                        <li>Broker-specific templates/macros</li>
+                        <li>Broker-specific macros in Intercom</li>
                     </ul>
                 </div>
                 
@@ -375,8 +376,13 @@
                         <li><strong>LOA:</strong> Letter of Authorization</li>
                         <li><strong>Employer Group:</strong> Company with coverage</li>
                         <li><strong>Collection Status:</strong> Progress indicator</li>
+                        <li><strong>Omni:</strong> System for exporting coverage lists</li>
                     </ul>
                 </div>
+            </div>
+            
+            <div class="clickup-note">
+                <strong>Intercom Setup:</strong> For detailed Intercom navigation and screenshots, refer to the "Managed By Email Driven Workflow - Intercom" visual guide. This document provides step-by-step screenshots of the Intercom interface.
             </div>
             
             <div class="warning-box">
@@ -426,42 +432,51 @@
             
             <div class="step-card">
                 <div class="step-number">3</div>
-                <h3>Prepare Your Email Request</h3>
+                <h3>Prepare Your Email Request in Intercom</h3>
                 <div class="step-content">
-                    <h4>Start New Communication</h4>
+                    <h4>Create New Conversation in Intercom</h4>
                     <ol>
-                        <li>Open your email platform</li>
-                        <li>Start a new conversation</li>
-                        <li>Apply the appropriate macro/template based on your broker's guidelines</li>
+                        <li>Open Intercom and click "New Conversation"</li>
+                        <li>Select the correct broker macro: <strong>Managed By ThreeFlow - Carrier Outreach [broker name]</strong></li>
+                        <li>The LOA will be automatically attached for you</li>
                     </ol>
                     
                     <div class="tip-box">
-                        <strong>Pro Tip:</strong> Reference your broker's specific macro or template guidelines for group size requirements and renewal information requests.
+                        <strong>Intercom Tip:</strong> Type "managed By" in the macro search to quickly find your broker's specific carrier outreach macro. The macro will pre-populate the email template with the correct format and attach the LOA automatically.
                     </div>
                     
-                    <h4>Create Subject Line</h4>
-                    <div class="template-box">
-                        Action Needed: Document Request for Policy Documents [Your Broker Name]
-                    </div>
+                    <h4>Export Coverage List from Omni</h4>
+                    <ol>
+                        <li>Access Omni to retrieve the coverage list</li>
+                        <li>Export the employer groups and coverages</li>
+                        <li>Paste the list into your Intercom email body where indicated</li>
+                    </ol>
                     
-                    <h4>List Employer Groups</h4>
-                    <p>Format each employer group as:</p>
+                    <h4>Format Employer Groups</h4>
+                    <p>The coverage list should be formatted as:</p>
                     <div class="template-box">
                         • Employer Name (Policy Number) - Coverage Type(s)<br>
                         • ABC Company (123456) - Dental, Vision, Life/AD&D<br>
                         • XYZ Corporation (789105) - Short Term Disability
+                    </div>
+                    
+                    <h4>Subject Line</h4>
+                    <div class="template-box">
+                        Action Needed: Document Request for Policy Documents [Your Broker Name]
                     </div>
                 </div>
             </div>
             
             <div class="step-card">
                 <div class="step-number">4</div>
-                <h3>Select Carrier Contacts</h3>
+                <h3>Add Carrier Contacts in Intercom</h3>
                 <div class="step-content">
                     <ol>
                         <li>Open carrier contact database</li>
                         <li>Navigate to appropriate region/section</li>
-                        <li>Consider these factors:
+                        <li>Input the selected contact into the "To" field in Intercom</li>
+                        <li>Populate the subject line with your formatted subject</li>
+                        <li>Consider these factors when selecting contacts:
                             <ul>
                                 <li>Group size specifications</li>
                                 <li>Product-specific representatives</li>
@@ -471,34 +486,39 @@
                     </ol>
                     
                     <div class="warning-box">
-                        <strong>Best Practice:</strong> When multiple people are CC'd, often no one responds. Be strategic with recipient selection.
+                        <strong>Best Practice:</strong> When multiple people are CC'd, often no one responds. Be strategic with recipient selection - start with the most relevant contact based on group size and product type.
                     </div>
                 </div>
             </div>
             
             <div class="step-card">
                 <div class="step-number">5</div>
-                <h3>Finalize and Send</h3>
+                <h3>Send and Track in Intercom</h3>
                 <div class="step-content">
                     <div class="checklist">
                         <h3>Pre-Send Checklist</h3>
                         <ul>
-                            <li>Correct template/macro applied</li>
+                            <li>Correct Intercom macro applied (Managed By ThreeFlow - Carrier Outreach)</li>
                             <li>Subject line includes broker name</li>
+                            <li>Coverage list exported from Omni and pasted</li>
                             <li>All assigned groups listed</li>
                             <li>Policy numbers included where available</li>
                             <li>Only assigned products mentioned</li>
-                            <li>Letter of Authorization attached</li>
-                            <li>1-2 carrier contacts selected</li>
+                            <li>Letter of Authorization attached (automatic with macro)</li>
+                            <li>1-2 carrier contacts in "To" field</li>
                         </ul>
                     </div>
                     
-                    <h4>Send and Track</h4>
+                    <h4>Send and Monitor</h4>
                     <ol>
-                        <li>Send the email</li>
-                        <li>Set follow-up reminder for <span class="badge">1 WEEK</span></li>
-                        <li>Ensure auto-follow-up features are activated (3-day trigger)</li>
+                        <li>Send the email through Intercom</li>
+                        <li>Monitor your Intercom inbox for responses</li>
+                        <li>Set reminder to follow up after <span class="badge">5 DAYS</span> if no response</li>
                     </ol>
+                    
+                    <div class="tip-box">
+                        <strong>Intercom Monitoring:</strong> Check your "Your Inbox" view in Intercom regularly for carrier responses. You can also check the "Managed by ThreeFlow" team inbox for any misdirected responses.
+                    </div>
                 </div>
             </div>
             
@@ -515,35 +535,34 @@
                 </div>
             </div>
             
-            <h2>Email Template</h2>
+            <h2>Email Template (Intercom Macro)</h2>
+            
+            <div class="warning-box">
+                <strong>Note:</strong> This template is automatically applied when you select the "Managed By ThreeFlow - Carrier Outreach [broker name]" macro in Intercom. You only need to add the coverage list from Omni.
+            </div>
             
             <div class="template-box">
 Subject: Action Needed: Document Request for Policy Documents [Your Broker Name]
 
 Dear [Carrier Contact Name],
 
-[Apply your broker's specific macro/template here]
+I'm reaching out on behalf of our broker partner, [Broker Name], to request the most recent policy documents, including current rates and the upcoming renewal information, for the client(s) listed below:
 
-We are requesting policy documents for the following employer groups:
+• [List Employer Groups & Coverages here - paste from Omni export]
 
-• [Employer Name] ([Policy Number]) - [Coverage Types]
-• [Employer Name] ([Policy Number]) - [Coverage Types]
+This information is needed to complete the setup in ThreeFlow and to ensure we have accurate, up-to-date coverage details. Attached is a Letter of Authorization, which permits us to request and collect this information on their behalf.
 
-Please provide:
-- Current policy documents
-- Summary of benefits
-- Rate sheets
-- Any amendments or riders
-[Additional items as specified in your broker's template]
+Could you please provide the following:
+- The most recent policy certificate(s) and current rates
+- Upcoming renewal rates, if available
+- Any supporting documents relevant to the renewal or policy
 
-Letter of Authorization attached for reference.
-
-Please send at your earliest convenience.
+Thanks in advance for your assistance.
 
 Best regards,
 [Your Name]
-[Your Title]
-[Contact Information]
+
+[Automatic signature and LOA attachment via Intercom]
             </div>
             
             <h2>Time Expectations</h2>
@@ -558,15 +577,26 @@ Best regards,
                 <div class="time-estimate">
                     <strong>Follow-ups:</strong> 2-3 minutes each
                 </div>
+                <div class="time-estimate">
+                    <strong>Response Time:</strong> 5-day cycles
+                </div>
             </div>
             
             <h2>Troubleshooting Guide</h2>
             
             <h3>No Response Received</h3>
             <ul>
-                <li><strong>After 3 days:</strong> First follow-up (may be automated)</li>
-                <li><strong>After 1 week:</strong> Manual follow-up with updated subject</li>
+                <li><strong>After 5 days:</strong> Send follow-up email through Intercom</li>
+                <li><strong>After 10 days:</strong> Send second follow-up with updated subject line</li>
                 <li><strong>After 2 weeks:</strong> Escalate to supervisor or try alternative contact</li>
+            </ul>
+            
+            <h3>Intercom-Specific Tips</h3>
+            <ul>
+                <li>If you can't find the macro, search for "Managed By" in the macro list</li>
+                <li>Check both "Your Inbox" and "Managed by ThreeFlow" inbox for responses</li>
+                <li>Use Intercom tags to track status of outreach efforts</li>
+                <li>If Omni export isn't working, manually format the coverage list</li>
             </ul>
             
             <h3>Common Scenarios</h3>
